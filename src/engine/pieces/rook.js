@@ -1,7 +1,7 @@
 import Piece from './piece';
 import Square from '../square';
 import Player from '../player';
-//import freeSpace from '../freeSpace';
+
 
 
 
@@ -15,23 +15,17 @@ export default class Rook extends Piece {
         const moves = []
 
 
-        // for (let i = 0; i < 8; i++) {
 
-        //     console.log(!board.getPiece(Square.at(location.row, i)));
-        //     //horizontal free squares
-        //     if (i != location.col && !(board.getPiece(Square.at(location.row, i)))) {
-
-        //         moves.push(Square.at(location.row, i));
-        //     }
-        //     //vertical free squares
-        //     if (i != location.row && !(board.getPiece(Square.at(i, location.col)))) {
-        //         moves.push(Square.at(i, location.col));
-        //     }
-        // }
         for (let i = 1; i < 8; i++) {
-            // check available squares while moving left
-            if ((location.col - i) >= 0 && !(board.getPiece(Square.at(location.row, location.col - i)))) {
-                moves.push(Square.at(location.row, location.col - i));
+            // check available squares while moving left, can take opposing piece
+            if ((location.col - i) >= 0) {
+                if (!(board.getPiece(Square.at(location.row, location.col - i)))) {
+                    moves.push(Square.at(location.row, location.col - i));
+                }
+                else if (board.getPiece(Square.at(location.row, location.col - i)).player === Player.BLACK) {
+                    moves.push(Square.at(location.row, location.col - i));
+                    break;
+                }
             } else break;
         }
         //check available squares while moving right
