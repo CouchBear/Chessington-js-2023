@@ -15,19 +15,20 @@ export default class RooK extends Piece {
     getAvailableMoves(board) {
         let location = board.findPiece(this)
         const moves = []
-
+        const row = location.row;
+        const col = location.col;
 
 
         for (let i = 1; i < 8; i++) {
             // checK available squares while moving left, can take opposing non-king piece
-            if ((location.col - i) >= 0) {
+            if ((col - i) >= 0) {
 
-                if (board.getPiece(Square.at(location.row, location.col - i)) === undefined) {
-                    moves.push(Square.at(location.row, location.col - i));
-                } else if (board.getPiece(Square.at(location.row, location.col - i)).player !== board.currentPlayer
-                    && !(board.getPiece(Square.at(location.row, location.col - i)) instanceof King)) {
+                if (board.getPiece(Square.at(row, col - i)) === undefined) {
+                    moves.push(Square.at(row, col - i));
+                } else if (board.getPiece(Square.at(row, col - i)).player !== board.currentPlayer
+                    && !(board.getPiece(Square.at(row, col - i)) instanceof King)) {
 
-                    moves.push(Square.at(location.row, location.col - i));
+                    moves.push(Square.at(row, col - i));
                     break;
 
                 } else break;
@@ -38,14 +39,14 @@ export default class RooK extends Piece {
 
         //checK available squares while moving right,can take opposing non-king piece
         for (let i = 1; i < 8; i++) {
-            if ((location.col + i) < 8) {
+            if ((col + i) < 8) {
 
-                if (board.getPiece(Square.at(location.row, location.col + i)) === undefined) {
-                    moves.push(Square.at(location.row, location.col + i));
-                } else if (board.getPiece(Square.at(location.row, location.col + i)).player !== board.currentPlayer
-                    && !(board.getPiece(Square.at(location.row, location.col + i)) instanceof King)) {
+                if (board.getPiece(Square.at(row, col + i)) === undefined) {
+                    moves.push(Square.at(row, col + i));
+                } else if (board.getPiece(Square.at(row, col + i)).player !== board.currentPlayer
+                    && !(board.getPiece(Square.at(row, col + i)) instanceof King)) {
                     console.log("");
-                    moves.push(Square.at(location.row, location.col + i));
+                    moves.push(Square.at(row, col + i));
                     break;
                 } else break;
 
@@ -54,14 +55,14 @@ export default class RooK extends Piece {
 
         //checK available squares while moving up,can take opposing non-king piece
         for (let i = 1; i < 8; i++) {
-            if ((location.row + i) < 8) {
+            if ((row + i) < 8) {
 
-                if (board.getPiece(Square.at(location.row + i, location.col)) === undefined) {
-                    moves.push(Square.at(location.row + i, location.col));
-                } else if (board.getPiece(Square.at(location.row + i, location.col)).player !== board.currentPlayer
-                    && !(board.getPiece(Square.at(location.row + i, location.col)) instanceof King)) {
+                if (board.getPiece(Square.at(row + i, col)) === undefined) {
+                    moves.push(Square.at(row + i, col));
+                } else if (board.getPiece(Square.at(row + i, col)).player !== board.currentPlayer
+                    && !(board.getPiece(Square.at(row + i, col)) instanceof King)) {
 
-                    moves.push(Square.at(location.row + i, location.col));
+                    moves.push(Square.at(row + i, col));
                     break;
                 } else break;
 
@@ -72,14 +73,14 @@ export default class RooK extends Piece {
         //checK available squares while moving down, can take opposing non-king piece
         for (let i = 1; i < 8; i++) {
 
-            if ((location.row - i) >= 0) {
+            if ((row - i) >= 0) {
 
-                if (board.getPiece(Square.at(location.row - i, location.col)) === undefined) {
-                    moves.push(Square.at(location.row - i, location.col));
-                } else if (board.getPiece(Square.at(location.row - i, location.col)).player !== board.currentPlayer
-                    && !(board.getPiece(Square.at(location.row - i, location.col)) instanceof King)) {
+                if (board.getPiece(Square.at(row - i, col)) === undefined) {
+                    moves.push(Square.at(row - i, col));
+                } else if (board.getPiece(Square.at(row - i, col)).player !== board.currentPlayer
+                    && !(board.getPiece(Square.at(row - i, col)) instanceof King)) {
 
-                    moves.push(Square.at(location.row - i, location.col));
+                    moves.push(Square.at(row - i, col));
                     break;
 
                 } else break;
