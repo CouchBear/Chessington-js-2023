@@ -44,4 +44,28 @@ describe('Knight', () => {
 
         moves.should.deep.include(Square.at(2, 5));
     });
+
+    it('can not move to adjacent square', () => {
+        const knight = new Knight(Player.WHITE);
+        const pawn = new Pawn(Player.BLACK);
+        board.setPiece(Square.at(3, 3), knight);
+        board.setPiece(Square.at(4, 4), pawn);
+
+        const moves = knight.getAvailableMoves(board);
+
+        moves.should.not.deep.include(Square.at(3, 2));
+
+    });
+
+    it('should not move diagonally', () => {
+        const knight = new Knight(Player.WHITE);
+        const pawn = new Pawn(Player.BLACK);
+        board.setPiece(Square.at(3, 3), knight);
+        board.setPiece(Square.at(4, 3), pawn);
+
+        const moves = knight.getAvailableMoves(board);
+
+        moves.should.not.deep.include.members([Square.at(4, 4), Square.at(5, 5)]);
+    });
+
 });
